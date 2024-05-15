@@ -24,22 +24,25 @@ public class UserManagement {
 
     // Kullanıcı girişi işlemi
     public boolean loginUser(String username, String password) {
-        for (User user : users) {
-            if (user.getUsername().equals(username)) {
-                HashMap storedPassword = user.getPassword();
-                HashMap enteredPasswordMap = createPasswordMap(password);
-                if (comparePasswords(storedPassword, enteredPasswordMap)) {
-                    System.out.println("Giriş başarılı. Hoş geldiniz, " + user.getFullname() + "!");
-                    return true;
-                } else {
-                    System.out.println("Hatalı şifre. Lütfen tekrar deneyin.");
-                    return false;
-                }
+        User user = users.search(username);
+        if(user != null){
+            HashMap storedPassword = user.getPassword();
+            HashMap enteredPasswordMap = createPasswordMap(password);
+            if (comparePasswords(storedPassword, enteredPasswordMap)) {
+                System.out.println("Giriş başarılı. Hoş geldiniz, " + user.getFullname() + "!");
+                return true;
+            } else {
+                System.out.println("Hatalı şifre. Lütfen tekrar deneyin.");
+                return false;
             }
+        }else{
+            System.out.println("Kullanıcı bulunamadı.");
+            return false;
         }
-        System.out.println("Kullanıcı bulunamadı.");
-        return false;
-    }
+
+            }
+
+
 
     // Şifreyi HashMap olarak oluşturma
     private HashMap createPasswordMap(String password) {
@@ -54,6 +57,6 @@ public class UserManagement {
     private boolean comparePasswords(HashMap password1, HashMap password2) {
 
 
-        return true
+        return true;
     }
 }
