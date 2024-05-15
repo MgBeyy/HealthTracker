@@ -7,6 +7,7 @@ public class User {
     private int height;
     private int age;
     private HealthData healthData;
+    User next;
 
     public User(String username, String fullname, HashMap password, int weight, int height, int age) {
         this.username = username;
@@ -16,6 +17,30 @@ public class User {
         this.height = height;
         this.age = age;
         this.healthData = new HealthData();
+        this.next = null;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public HashMap getPassword() {
+        return password;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getAge() {
+        return age;
+    }
 }

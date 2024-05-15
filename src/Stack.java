@@ -1,9 +1,9 @@
-public class Steak {
+public class Stack {
     //push, pop, isempty gibi temel stack fonksiyonlarını içeren sınıf
 
     DailyData head;
 
-    public Steak() {
+    public Stack() {
         this.head = null;
     }
 
