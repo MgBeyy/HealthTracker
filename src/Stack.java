@@ -1,5 +1,4 @@
 public class Stack {
-    //push, pop, isempty gibi temel stack fonksiyonlarını içeren sınıf
 
     DailyData head;
 
@@ -7,30 +6,39 @@ public class Stack {
         this.head = null;
     }
 
-    void push(DailyData data) {
+    public void push(DailyData data) {
         data.previousData = head;
         head = data;
     }
 
-    DailyData pop() {
+    public DailyData pop() {
+        if (head == null) {
+            return null;
+        }
         DailyData temp = head;
         head = head.previousData;
         return temp;
     }
 
-    void delete_all() {
+    public void delete_all() {
         head = null;
         System.out.println("Tüm veriler silindi");
     }
 
-    boolean is_empty() {
-        if (head != null) {
-            System.out.println("Steak boş değildir.");
-            return true;
-        } else {
-            System.out.println("Staek boştur.");
-            return false;
-        }
+    public boolean is_empty() {
+        return head == null;
     }
 
+    public DailyData search(String date) {
+        Stack tempStack = new Stack();
+        while (head != null && !head.getDate().equals(date)) {
+            tempStack.push(this.pop());
+        }
+        DailyData foundData = head;
+
+        while (!tempStack.is_empty()) {
+            this.push(tempStack.pop());
+        }
+        return foundData;
+    }
 }

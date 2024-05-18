@@ -1,6 +1,5 @@
 public class HealthData {
-    //Daily data sınıfından nodlar oluşturup stack'te saklayan
-    //gerektiğinde onuları çağıran sınıf
+
     private Stack history;
 
     public HealthData() {
@@ -8,8 +7,19 @@ public class HealthData {
     }
 
     public void displayData(String date) {
-        //Tarihi alıp o tarihe kadar stack'ten sürekli push işlemi yapacak.
-        //Tarihi bulunca yazdıracak
+        DailyData data = history.search(date);
+        if (data != null) {
+            System.out.println("Nabız: " + data.getPulse() + ", Kan Basıncı: " + data.getBloodPressure() +
+                    ", Uyku Süresi: " + data.getSleepDuration() + ", Aktivite Seviyesi: " + data.getActivityLevel());
+        } else {
+            System.out.println("Veri bulunamadı.");
+        }
     }
 
+    public void add(String date, int pulse, int bloodPressure, int sleepDuration,
+                    int activityLevel) {
+        DailyData newData = new DailyData(date, pulse, bloodPressure,
+                sleepDuration, activityLevel);
+        history.push(newData);
+    }
 }
